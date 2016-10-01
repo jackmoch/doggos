@@ -9,14 +9,13 @@ module.exports.registerNewUser = ({ body : { username, password }}, res, err) =>
 				if(user) {
 					res.json({ msg: 'User already exists'})
 				} else {
-					User
-						.create({
-							username: username,
-							password: password
-						})
-						.then((user) => {
-							res.json({ username: username})
-						})
+					Promise.resolve()
 				}
+			})
+			.then(() => {
+				User
+					.create({ username, password })
+					.then(() => res.json({ username: username }))
+					.catch(err) 
 			})
 }
