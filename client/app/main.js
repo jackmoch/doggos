@@ -10,4 +10,12 @@ app.config(($routeProvider, $locationProvider) => {
 		controller: 'HomeCtrl',
 		'templateUrl': 'partials/home.html'
 	})
+	.when('/login', {
+		controller: 'LoginCtrl',
+		'templateUrl': 'partials/login.html'
+	})
+	.when('/register', {
+		controller: 'RegisterCtrl',
+		'templateUrl': 'partials/register.html'
+	})
 })
