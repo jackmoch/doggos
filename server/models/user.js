@@ -29,7 +29,18 @@ userSchema.pre('save', function(cb) {
 
 userSchema.methods.comparePassword = function(password, cb) {
 	const user = this
-	bcrypt.compare(password, user.password, cb)
+
+  // Support callback and `Promise` pattern
+  if (typeof cb === 'function') {
+    return bcrypt.compare(password, user.password, cb)
+  }
+
+  return new Promise((resolve, reject) => {
+	    bcrypt.compare(password, user.password, (err, matches) => {
+	      err ? reject(err) : resolve(matches)
+	    }
+    )
+  })
 }
 
 userSchema.statics.findOneByUsername = function(username, cb) {
