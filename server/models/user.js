@@ -13,3 +13,10 @@ const userSchema = new mongoose.Schema({
 		required: true
 	}
 })
+
+userSchema.statics.findOneByUsername = function(username, cb) {
+	const collection = this
+	return collection.findOne({username}, cb)
+}
+
+module.exports = mongoose.model('User', userSchema)
