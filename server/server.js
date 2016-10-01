@@ -1,6 +1,8 @@
 'use strict';
 
 const express = require('express')
+const session = require('express-session')
+const RedisStore = require('connect-redis')(session)
 const { json } = require('body-parser')
 const routes = require('../server/routes/')
 const mongoose = require('mongoose')
@@ -11,6 +13,14 @@ const app = express()
 const port = process.env.PORT || 3000
 
 app.set('port', port)
+
+// Middlewares
+app.use(session({
+  store: new RedisStore({
+    url: process.env.REDIS_URL || 'redis://localhost:6379'
+  }),
+  secret: 'doggo'
+}))
 
 app.use(express.static('client'))
 app.use(json())
