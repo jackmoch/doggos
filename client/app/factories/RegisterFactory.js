@@ -10,6 +10,8 @@ app.factory('RegisterFactory', function($http, $location) {
 				console.log(user.data)
 				if(user.data.username) {
 					$location.path('/login')
+				} else {
+					$location.path('/register')
 				}
 			})
 	}
