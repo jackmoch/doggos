@@ -13,7 +13,7 @@ app.set('port', port)
 app.use(express.static('client'))
 app.use(json())
 
-app.use(routes)
+app.use('/api',routes)
 
 // app.use((req, res) =>
 //   res.sendFile(process.cwd() + '/client/index.html')
