@@ -3,6 +3,8 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 
+const BCRYPT_DIFFICULTY = 15
+
 const userSchema = new mongoose.Schema({
 	username: {
 		type: String,
@@ -13,6 +15,22 @@ const userSchema = new mongoose.Schema({
 		required: true
 	}
 })
+
+userSchema.pre('save', function(cb) {
+	const user = this
+	bcrypt.hash(user.password, BCRYPT_DIFFICULTY, (err, hash) => {
+		if(err) {
+			return cb(err)
+		} 
+		user.password = hash
+		cb()
+	})
+})
+
+userSchema.methods.comparePassword = function(password, cb) {
+	const user = this
+	bcrypt.compare(password, user.password, cb)
+}
 
 userSchema.statics.findOneByUsername = function(username, cb) {
 	const collection = this
