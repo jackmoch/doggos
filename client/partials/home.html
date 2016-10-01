@@ -1,5 +1,19 @@
 <div class="container">
-	<div class="row">
-		<h1>Test</h1>
-	</div>
+  <div class="row">
+    <div class="center">
+      <h3>Doggos</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s3">
+      <a class="waves-effect waves-light btn-large red" ng-click='rejected()'>Bad Dog</a>
+    </div>
+    <div class="col s6">
+      <img class="responsive-img" src="{{match.info.picture}}" />
+    </div>
+    <div class="col s3">
+      <a class="waves-effect waves-light btn-large" ng-click='selected()'>Good Boy</a>
+    </div>
+  </div>
 </div>
