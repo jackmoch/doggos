@@ -4,7 +4,11 @@ app.factory('LoginFactory', function($http, $location) {
 
 	const loginUser = function(userObj) {
 
-		console.log(userObj)
+		$http
+			.post('/api/login', userObj)
+			.then((data) => {
+				console.log(data)
+			})
 
 	}
 
