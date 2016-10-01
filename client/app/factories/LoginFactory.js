@@ -1,4 +1,4 @@
-'use strict';
+
 
 app.factory('LoginFactory', function($http, $location) {
 
@@ -6,8 +6,12 @@ app.factory('LoginFactory', function($http, $location) {
 
 		$http
 			.post('/api/login', userObj)
-			.then((data) => {
-				console.log(data)
+			.then(({data}) => {
+				if(data.user) {
+					$location.path('/')
+				} else {
+					$location.path('/login')
+				}
 			})
 
 	}
