@@ -1,0 +1,23 @@
+{
+  "name": "doggos",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Jack Mocherman"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/jackmoch/doggos",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "materialize": "^0.97.7"
+  }
+}
